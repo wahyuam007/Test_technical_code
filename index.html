@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Technical Code</title>
+  <style>
+    .mb-0{
+      margin-bottom: 0;
+    }
+    .mt-0{
+      margin-top: 0;
+    }
+    .mb-10{
+      margin-bottom: 10px;
+    }
+    .data{
+      height: 300px; overflow-y: auto; border: 1px solid grey;
+    }
+    .d-flex {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="mb-10">
+      <input type="number" name="" id="input_number" placeholder="input number">
+    </div>
+    <div class="d-flex mb-10">
+      <button id="btnSegitiga">Generate segitiga</button>
+      <button id="btnGanjil">Generate Bilangan Ganjil</button>
+      <button id="btnPrima">Generate Prima</button>
+    </div>
+    <div id="data" class="data">
+
+    </div>
+  </div>
+  <script>
+    const btnSegitiga = document.getElementById('btnSegitiga');
+    const btnGanjil = document.getElementById('btnGanjil');
+    const btnPrima = document.getElementById('btnPrima');
+    const input = document.getElementById('input_number');
+    const data = document.getElementById('data');
+
+    function validateInput() {
+      data.innerHTML = '';
+      const value = input.value;
+      if (!value) {
+        window.alert('value is null');
+      } else {
+        return value;
+      }
+    }
+    
+    function handleSegitiga() {
+      const value = validateInput()
+      const valToString = value.toString().split('');
+      let hasil = '';
+      for (let i = 0; i < valToString.length; i++) {
+        let val = `${valToString[i]}0`;
+        for (let j = 0; j < i; j++) {
+          val += '0';
+        }
+        hasil += `<p class="mb-0 mt-0">${val}</p>`
+      }
+      data.innerHTML = hasil;
+    }
+    function handleGanjil() {
+      const value = validateInput();
+      let hasil = '';
+      for (let i = 0; i < value; i++) {
+        if (Number(i) % 2 !== 0) {
+          hasil += `<p class="mb-0 mt-0">${i}</p>`
+        }
+      }
+
+      data.innerHTML = hasil;
+    }
+    function handlePrima() {
+      const value = validateInput();
+      let hasil = '';
+      const valToString = value.toString();
+      for (let i = 1; i < value; i++) {
+        let res = i;
+        for (let j = 2; j < i; j++) {
+          if (Number(i) % j === 0) {
+            res = '';
+          }
+        }
+        hasil += `<p class="mb-0 mt-0">${res}</p>`;
+      }
+
+      data.innerHTML = hasil;
+    }
+
+    btnSegitiga.addEventListener('click', handleSegitiga);
+    btnGanjil.addEventListener('click', handleGanjil);
+    btnPrima.addEventListener('click', handlePrima);
+    
+  </script>
+</body>
+</html>
